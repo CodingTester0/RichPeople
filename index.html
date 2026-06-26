@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SnapApp" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="app-icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SnapApp</title>
+  </head>
+  <body>
+    <main class="app-shell" aria-label="Chat">
+      <header class="top-bar">
+        <button class="avatar-button" type="button" aria-label="Profile">
+          <span class="profile-avatar">A</span>
+        </button>
+        <button class="round-button" type="button" aria-label="Search">
+          <img src="icons/search.png" alt="" />
+        </button>
+        <h1>Chat</h1>
+        <button class="round-button" type="button" aria-label="Notifications">
+          <img src="icons/notification snap.png" alt="" />
+        </button>
+        <button class="round-button quick-add" type="button" aria-label="Quick add">
+          <img src="icons/quick add.png" alt="" />
+          <span class="badge">11</span>
+        </button>
+        <button class="round-button" type="button" aria-label="More options">
+          <img src="icons/more-options.png" alt="" />
+        </button>
+      </header>
+
+      <section class="chat-list" id="chatList" aria-label="Recent chats"></section>
+
+      <button class="compose-button" type="button" aria-label="New chat">
+        <img src="icons/chat.png" alt="" />
+      </button>
+
+      <nav class="tab-bar" aria-label="Main navigation">
+        <button class="tab-button" type="button" aria-label="Map">
+          <img src="location-removebg-preview.png" alt="" />
+        </button>
+        <button class="tab-button active" type="button" aria-label="Chat">
+          <img src="icons/chat(dashbar).png" alt="" />
+          <span class="tab-badge" id="chatTabBadge">1</span>
+        </button>
+        <button class="tab-button" type="button" aria-label="Camera">
+          <img src="icons/camera.png" alt="" />
+        </button>
+        <button class="tab-button" type="button" aria-label="Stories">
+          <img src="icons/stories.png" alt="" />
+        </button>
+        <button class="tab-button" type="button" aria-label="Spotlight">
+          <img src="icons/reels.png" alt="" />
+        </button>
+      </nav>
+
+      <dialog class="person-editor" id="personEditor" aria-labelledby="editorTitle">
+        <form method="dialog" class="editor-panel">
+          <h2 id="editorTitle">Edit Friend</h2>
+          <div class="editor-preview" id="editorPreview" aria-hidden="true"></div>
+          <label>
+            <span>Name</span>
+            <input id="nameInput" name="name" autocomplete="off" maxlength="32" />
+          </label>
+          <label>
+            <span>Snapchat Username</span>
+            <input id="snapUrlInput" name="snapUrl" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="username" />
+          </label>
+          <label>
+            <span>Bitmoji Background</span>
+            <input id="bitmojiBgInput" name="bitmojiBg" type="color" value="#eef1f5" />
+          </label>
+          <button class="fetch-button" id="fetchSnapProfile" type="button">Get Bitmoji</button>
+          <section class="quick-controls" aria-label="Bitmoji badge emoji">
+            <span>Badge Emoji</span>
+            <div class="emoji-badge-grid" id="profileEmojiGrid"></div>
+          </section>
+          <section class="bitmoji-picker" aria-label="Saved Bitmojis">
+            <span>Saved Bitmojis</span>
+            <div class="bitmoji-grid" id="bitmojiGrid"></div>
+          </section>
+          <menu class="editor-actions">
+            <button class="text-button" value="cancel" type="submit">Cancel</button>
+            <button class="save-button" id="savePerson" value="default" type="submit">Save</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <dialog class="person-editor" id="bitmojiManager" aria-labelledby="bitmojiManagerTitle">
+        <form method="dialog" class="editor-panel">
+          <h2 id="bitmojiManagerTitle">Saved Bitmojis</h2>
+          <div class="bitmoji-grid manager-grid" id="managerBitmojiGrid"></div>
+          <menu class="editor-actions">
+            <button class="save-button" value="default" type="submit">Done</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <dialog class="person-editor" id="badgeEditor" aria-labelledby="badgeEditorTitle">
+        <form method="dialog" class="editor-panel" id="badgeForm">
+          <h2 id="badgeEditorTitle">Notification Count</h2>
+          <label>
+            <span>Number</span>
+            <input id="badgeInput" name="badgeCount" type="number" inputmode="numeric" min="0" max="999" autocomplete="off" />
+          </label>
+          <menu class="editor-actions">
+            <button class="text-button" value="cancel" type="submit">Cancel</button>
+            <button class="save-button" id="saveBadge" value="default" type="submit">Save</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <dialog class="person-editor" id="chatBadgeEditor" aria-labelledby="chatBadgeEditorTitle">
+        <form method="dialog" class="editor-panel" id="chatBadgeForm">
+          <h2 id="chatBadgeEditorTitle">Chat Count</h2>
+          <label>
+            <span>Number</span>
+            <input id="chatBadgeInput" name="chatBadgeCount" type="number" inputmode="numeric" min="0" max="999" autocomplete="off" />
+          </label>
+          <menu class="editor-actions">
+            <button class="text-button" value="cancel" type="submit">Cancel</button>
+            <button class="save-button" id="saveChatBadge" value="default" type="submit">Save</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <dialog class="person-editor" id="statusEditor" aria-labelledby="statusEditorTitle">
+        <form method="dialog" class="editor-panel" id="statusForm">
+          <h2 id="statusEditorTitle">Edit Chat</h2>
+          <label>
+            <span>Status</span>
+            <select id="statusStateInput" name="statusState">
+              <option value="new">New</option>
+              <option value="delivered">Delivered</option>
+              <option value="received">Received</option>
+              <option value="opened">Opened</option>
+              <option value="screenshot">Screenshot</option>
+            </select>
+          </label>
+          <label>
+            <span>Type</span>
+            <select id="statusMediaInput" name="statusMedia">
+              <option value="chat">Chat</option>
+              <option value="snap">Snap</option>
+              <option value="video">Video</option>
+            </select>
+          </label>
+          <label>
+            <span>Timing</span>
+            <input id="statusTimeInput" name="statusTime" autocomplete="off" placeholder="4h, 2d, 1w" />
+          </label>
+          <label>
+            <span>Streak</span>
+            <input id="statusStreakInput" name="statusStreak" type="number" inputmode="numeric" min="0" max="9999" autocomplete="off" />
+          </label>
+          <label class="check-row">
+            <input id="liveVisibleInput" name="liveVisible" type="checkbox" />
+            <span>Visible on live page</span>
+          </label>
+          <section class="quick-controls" aria-label="Quick status controls">
+            <span>Quick Status</span>
+            <div class="quick-grid">
+              <button class="quick-control" type="button" data-status-preset="received">Received</button>
+              <button class="quick-control" type="button" data-status-preset="opened">Opened</button>
+              <button class="quick-control" type="button" data-status-preset="new-chat">New Chat</button>
+              <button class="quick-control" type="button" data-status-preset="new-snap">New Snap</button>
+            </div>
+          </section>
+          <menu class="editor-actions">
+            <button class="text-button" value="cancel" type="submit">Cancel</button>
+            <button class="save-button" id="saveStatus" value="default" type="submit">Save</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <dialog class="person-editor" id="randomizerEditor" aria-labelledby="randomizerTitle">
+        <form method="dialog" class="editor-panel">
+          <h2 id="randomizerTitle">Randomize Chats</h2>
+          <section class="quick-controls" aria-label="Random chat controls">
+            <span>Timing Style</span>
+            <div class="quick-grid time-grid">
+              <button class="quick-control" type="button" data-randomize-range="fresh">Newest</button>
+              <button class="quick-control" type="button" data-randomize-range="today">Today</button>
+              <button class="quick-control" type="button" data-randomize-range="days">Days</button>
+              <button class="quick-control" type="button" data-randomize-range="weeks">Weeks</button>
+              <button class="quick-control" type="button" data-randomize-range="old">Older</button>
+            </div>
+          </section>
+          <menu class="editor-actions">
+            <button class="save-button" value="default" type="submit">Done</button>
+          </menu>
+        </form>
+      </dialog>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

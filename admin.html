@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Live</title>
+    <style>
+      :root {
+        font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #14171d;
+        background: #f4f6f9;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 24px;
+      }
+
+      main {
+        display: grid;
+        gap: 18px;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+      }
+
+      section {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+      }
+
+      .client,
+      .row-card {
+        display: grid;
+        gap: 8px;
+        padding: 12px;
+        border: 1px solid #e1e5ec;
+        border-radius: 8px;
+      }
+
+      .meta {
+        color: #69717d;
+        font-size: 13px;
+      }
+
+      textarea {
+        min-height: 76px;
+        width: 100%;
+        resize: vertical;
+        border: 1px solid #ccd3dd;
+        border-radius: 8px;
+        padding: 10px;
+        font: inherit;
+      }
+
+      .empty {
+        color: #69717d;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Blue bendz Blue bendz</h1>
+      <section>
+        <h2>Prijungtu acauntyzu</h2>
+        <div id="clients"></div>
+      </section>
+      <section>
+        <h2>Visible rows (chat people)</h2>
+        <div id="rows"></div>
+      </section>
+    </main>
+    <script src="config.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

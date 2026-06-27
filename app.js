@@ -644,7 +644,7 @@ function iconForMessage(message) {
 function textForMessage(message) {
   const normalized = normalizeMessage(message);
   if (normalized.state === "new") {
-    return "New Snap";
+    return normalized.media === "chat" ? "New Chat" : "New Snap";
   }
   return messageStateLabels[normalized.state] || "Received";
 }

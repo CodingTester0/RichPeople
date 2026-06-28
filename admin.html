@@ -7,8 +7,8 @@
     <style>
       :root {
         font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: #14171d;
-        background: #f4f6f9;
+        color: #eef2f7;
+        background: #090b10;
       }
 
       * {
@@ -37,8 +37,9 @@
         gap: 12px;
         padding: 16px;
         border-radius: 10px;
-        background: #fff;
-        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+        border: 1px solid #222733;
+        background: #121722;
+        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
       }
 
       .client,
@@ -46,12 +47,13 @@
         display: grid;
         gap: 8px;
         padding: 12px;
-        border: 1px solid #e1e5ec;
+        border: 1px solid #2b3342;
         border-radius: 8px;
+        background: #171d29;
       }
 
       .meta {
-        color: #69717d;
+        color: #8f98a8;
         font-size: 13px;
       }
 
@@ -59,14 +61,22 @@
         min-height: 76px;
         width: 100%;
         resize: vertical;
-        border: 1px solid #ccd3dd;
+        color: #f4f7fb;
+        border: 1px solid #343d4f;
         border-radius: 8px;
+        background: #0c111a;
         padding: 10px;
         font: inherit;
       }
 
+      textarea:focus {
+        outline: none;
+        border-color: #39b2dd;
+        box-shadow: 0 0 0 3px rgba(57, 178, 221, 0.18);
+      }
+
       .empty {
-        color: #69717d;
+        color: #8f98a8;
       }
     </style>
   </head>

@@ -306,7 +306,6 @@ button {
 .chat-name {
   display: block;
   width: 100%;
-  overflow: hidden;
   color: var(--text);
   font-size: clamp(1.04rem, 4.35vw, 1.34rem);
   font-weight: 430;
